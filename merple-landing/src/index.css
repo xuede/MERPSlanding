@@ -10,7 +10,6 @@ body {
 
 html, body, #root {
   height: 100%; /* Make sure full height is used */
-  overflow-y: scroll; /* Enable scroll if content overflows */
 }
 
 code {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 // Make sure to have the cat-shaped cloud image in your project, e.g., in src/assets or public folder.
 import catCloudImg from './assets/cat-cloud.jpg';  // Adjust path as needed
@@ -9,13 +9,67 @@ const fadeIn = keyframes`
   to   { opacity: 1; }
 `;
 
+// Coming Soon Popup
+const ComingSoonPopup = styled.div`
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  z-index: 101;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+`;
+
 // Page container with parallax background
+const StickyHeader = styled.header`
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8); /* Dark background for the header */
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100; /* Ensure it's on top of other content */
+`;
+
+const HeaderLink = styled.a`
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const BuyButton = styled.button`
+  background-color: #00fff6;
+  color: #121212;
+  border: none;
+  padding: 1rem 2.5rem; /* Increased padding for bigger button */
+  border-radius: 10px; /* Slightly more rounded corners */
+  cursor: pointer;
+  font-weight: 900; /* Extra bold font weight */
+  font-size: 1.2rem; /* Slightly larger font size */
+  letter-spacing: 0.1em; /* Added letter spacing */
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #00b3af;
+  }
+`;
+
+
 const PageContainer = styled.div`
   background: #121212 url(${catCloudImg}) center center no-repeat; /* Dark background */
   background-size: cover;
   background-attachment: fixed;
   color: #ffffff;              /* White text color */
-  font-family: 'Bebas Neue', sans-serif; /* Modern font */
+  font-family: 'Roboto', sans-serif; /* More readable font */
   text-shadow: 0 0 3px #000;   /* Slightly stronger text shadow */
   overflow-x: hidden;
 `;
@@ -119,21 +173,6 @@ const CommunitySection = styled(SectionContainer)`
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
   }
-  a {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    margin: 0.5rem;
-    color: #00fff6;
-    text-decoration: none;
-    border: 2px solid #00fff6;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    &:hover {
-      background-color: #00fff6;
-      color: #121212;
-      text-shadow: none;
-    }
-  }
 `;
 
 // Footer container
@@ -149,6 +188,14 @@ const Footer = styled.footer`
 // The main React component
 const MerpleLanding = () => {
   const [manifestoVisible, setManifestoVisible] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupText, setPopupText] = useState('');
+
+  const handleSocialClick = useCallback((platform) => {
+    setPopupText(`It's coming right up... soon.`);
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 3000);
+  }, []);
 
   useEffect(() => {
     // Observe when the manifesto section enters the viewport to trigger fade-in
@@ -171,63 +218,82 @@ const MerpleLanding = () => {
 
   return (
     <PageContainer>
+      <StickyHeader>
+        <div>
+          <HeaderLink href="#">White Paper</HeaderLink>
+        </div>
+        <div>
+          <BuyButton>BUY MERP$ NOW!</BuyButton>
+        </div>
+      </StickyHeader>
       {/* Hero Section */}
       <HeroSection>
         <LogoText>MERP$</LogoText>
-        <WelcomeText>Heed my call, degens. The divinity of Merple beckons.</WelcomeText>
-        <Tagline>A meme coin for the enlightened nihilist.</Tagline>
+        <WelcomeText>MERP$ is Taking a Flying Fuck at the Moon! 🚀🌕🪙</WelcomeText>
+        <Tagline>Welcome to MERP$ World – where Merple, our badass, irreverent feline goddess, rules with a sneer and a heart full of radical shit. If you’re tired of crypto’s bullshit and ready to join a movement that laughs in the face of mainstream greed, you’re in the right place.</Tagline>
+        <div>
+          <BuyButton>JOIN US! / BUY MERP$</BuyButton>
+        </div>
+        <Tagline style={{marginTop: '1rem', fontStyle: 'normal', fontSize: '1.5rem'}}>One of us.</Tagline>
+        <Tagline style={{marginTop: '0', fontStyle: 'normal', fontSize: '1.2rem'}}>One of us.</Tagline>
+        <Tagline style={{marginTop: '0', fontStyle: 'normal', fontSize: '1rem'}}>One of us.</Tagline>
       </HeroSection>
 
       {/* Manifesto Section */}
       <ManifestoSection id="manifesto" visible={manifestoVisible}>
+        <h2>Our Manifesto</h2>
         {/* Long, dramatic manifesto-style text */}
         <p>
-          In the beginning was a cat-shaped cloud, and from it MerpleCoin was born. In a world where money was already a 
-          cosmic joke, we made it an inside joke. <strong>Merple</strong> exists not to solve problems but to illuminate 
-          the absurdity of solving them. It’s the <em>anti-whitepaper</em>, a prophecy for those who understand that 
-          value is just a shared hallucination.
+          In the beginning was a cat‐shaped cloud—and from a wild mid‐wifery, MerpleCoin was born. In a world where money is already the universe’s biggest joke, we decided to make it an inside joke. We even have a white paper, and trust us—it’s as irreverently hilarious as everything else we do.
         </p>
         <p>
-          <strong>MerpleCoin</strong> is our wink to the universe. It thrives on the belief that <em>nothing matters – and 
-          that’s the point.</em> No roadmap, no promises, just a community of degens sharing a cosmic giggle. In the cult 
-          of Merple, we are bonded not by hopes of Lambos or moon landings, but by the absurd realization that a 
-          coin with a cloud cat deity is as legit as any other illusion of wealth.
+          We’re the insiders of outsiders. We’ve seen the so-called “serious” projects come and go and thought, “Fuck ‘em.” Instead of chasing empty promises or cookie‑cutter moon landings, we’re carving our own absurd path. We’re a community of degens, rebels, and misfits sharing a cosmic giggle—united by the belief that sometimes the only sensible response is to laugh at it all.
         </p>
+
         <p>
-          We’ve watched the rise and fall of serious projects and thought: “Why so serious?” MerpleCoin isn’t here to 
-          revolutionize finance; it’s here to <em>revel</em> in it. We are the enlightened apes, the insiders of an 
-          inside joke, finding solidarity in nonsense. If you’ve felt the void staring back and still cracked a smile, 
-          you might already be one of us.
+          MerpleCoin is our cheeky wink to the universe. It thrives on the radical idea that nothing truly matters—except our shared, unapologetic spirit. Whether we’re hosting a charity cat carnival or scribbling a treatise on existentialism (for the geeks, naturally), we do it our way.
+        </p>
+
+        <p>
+          If you’re ready to join a movement where irreverence meets raw elegance, where you’re not just a token holder but an insider in an outsider revolution, then welcome to MerpleCoin. And if you don’t get it? Then, frankly, it wasn’t meant for you.
         </p>
       </ManifestoSection>
 
-      {/* Tokenomics Section (Placeholder content) */}
+      {/* Tokenomics Section */}
       <TokenomicsSection>
         <h2 style={{ color: '#cff' }}>Tokenomics</h2>
+        <p><strong>Total Supply:</strong> Exactly 123,581,321,345,589 MERP$ have been minted—a fixed, capped supply inspired by the sacred Fibonacci sequence. This number isn’t generated on the fly; it’s the immutable total that embodies natural order and the inevitability of growth.</p>
+        <p><strong>Capped Supply:</strong> There’s no inflation here. Once these 123,581,321,345,589 tokens are distributed, that’s it. Every MERP$ is part of an exact, predetermined cosmic ledger.</p>
+        <p><strong>Distribution:</strong></p>
         <ul>
-          <li><strong>Total Supply:</strong> 1, 1, 2, 3, 5, 8, ... MERP$ (growing by the sacred Fibonacci sequence)</li>
-          <li><strong>Circulating Supply:</strong> F(n) where n is the block number of enlightenment</li>
-          <li><strong>Distribution:</strong> 100% Fair Airdrop to Believers (and maybe a few cats)</li>
-          <li><strong>Consensus Mechanism:</strong> Proof of Absurdity (PoA) – the more nonsensical, the more secure</li>
+          <li><strong>100% Fair Airdrop to Believers:</strong> Every token is meant for the community. We’re handing out MERP$ fairly—because if you’re a true Merper, you deserve a piece of the revolution. (A small reserve may be set aside for community initiatives, future NFT rewards, and interactive experiences.)</li>
         </ul>
+        <p><strong>Interactive Ecosystem:</strong></p>
+        <ul>
+          <li><strong>Merp Club Lounge:</strong> Holders unlock exclusive access to our digital speakeasy, where you can chat, vote on outrageous community proposals via the “Merp Council,” and enjoy secret meme drops.</li>
+          <li><strong>Merp Arcade & NFT Vault:</strong> Engage in token-gated games that reward you with additional MERP$ and limited-edition NFTs—physical swag and digital collectibles that prove you’re one of us.</li>
+          <li><strong>Gamified Merp Levels:</strong> The more you interact, the higher your Merp Level becomes, unlocking special roles and perks. This isn’t just holding a token—it’s joining an evolving revolution.</li>
+        </ul>
+        <p><strong>Consensus Mechanism:</strong></p>
+        <ul>
+          <li><strong>Proof of Absurdity (PoA):</strong> In a nod to our irreverent spirit, our consensus is measured in meme-worthy, nonsensical actions. The more absurd and engaging you are, the more secure and vibrant our network becomes.</li>
+        </ul>
+        <p><strong>Future Upgrades:</strong></p>
+        <p>As MERP$ grows, expect additional interactive features such as staking, yield farming, and dynamic NFT rewards—ensuring that MERP$ isn’t just a static token but an ever-evolving part of the Merple revolution.</p>
       </TokenomicsSection>
 
       {/* Community Rallying Call Section */}
       <CommunitySection>
-        <h2>If you belong, you do here.</h2>
-        <p>Join the Merple cult on our platforms:</p>
-        <p>
-          <a href="#" style={{ color: '#00fff6', textDecoration: 'none', margin: '0 1rem' }}>Discord</a>
-          <a href="#" style={{ color: '#00fff6', textDecoration: 'none', margin: '0 1rem' }}>Telegram</a>
-          <a href="#" style={{ color: '#00fff6', textDecoration: 'none', margin: '0 1rem' }}>Twitter</a>
-        </p>
+        <h2>If you never belonged, you do here.</h2>
+        <p>"Always on the outside? Well, now you're in."</p>
+        <BuyButton style={{marginBottom: '1rem', backgroundColor: '#cc6600', color: 'white', textShadow: '0 0 10px #cc6600, 0 0 20px #cc6600', border: '2px solid #cc6600'}}>BUY MERP$ NOW!</BuyButton>
       </CommunitySection>
 
       {/* Footer */}
       <Footer>
         <p>
-          Disclaimer: This site (and coin) is entirely satirical. Nothing here should be taken seriously&mdash;unless 
-          you’re a true believer, in which case everything is deadly serious. This is not financial advice (or is it?). 
+          Disclaimer: This site (and coin) is entirely satirical. Nothing here should be taken seriously&mdash;unless
+          you’re a true believer, in which case everything is deadly serious. This is not financial advice (or is it?).
         </p>
         <p>© 2025 MerpleCoin International. All rights reserved in perpetuity throughout the known multiverse.</p>
       </Footer>
