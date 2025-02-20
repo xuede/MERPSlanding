@@ -1,13 +1,45 @@
+/* Global styles for modern look */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Bebas Neue', sans-serif; /* Use the same modern font */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #121212; /* Dark background for the whole page */
+  color: #ffffff; /* Default text color to white */
+}
+
+html, body, #root {
+  height: 100%; /* Make sure full height is used */
+  overflow-y: scroll; /* Enable scroll if content overflows */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Fira Code', monospace; /* Monospace font for code snippets */
+  background-color: #282c34; /* Darker background for code blocks */
+  color: #abb2bf; /* Code text color */
+  padding: 0.2em 0.4em;
+  border-radius: 5px;
+}
+
+/* Typography adjustments for better readability */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
+
+a {
+  color: #00fff6; /* Neon cyan for links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #b3b3ff; /* Lighter neon on hover */
 }

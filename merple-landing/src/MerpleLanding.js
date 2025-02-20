@@ -11,12 +11,12 @@ const fadeIn = keyframes`
 
 // Page container with parallax background
 const PageContainer = styled.div`
-  background: url(${catCloudImg}) center center no-repeat;
+  background: #121212 url(${catCloudImg}) center center no-repeat; /* Dark background */
   background-size: cover;
   background-attachment: fixed;
-  color: #f0f0f0;              /* default text color (light) */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-shadow: 0 0 2px #000;   /* subtle text outline for contrast */
+  color: #ffffff;              /* White text color */
+  font-family: 'Bebas Neue', sans-serif; /* Modern font */
+  text-shadow: 0 0 3px #000;   /* Slightly stronger text shadow */
   overflow-x: hidden;
 `;
 
@@ -34,66 +34,116 @@ const HeroSection = styled.section`
 
 // Stylized logo text for "MERP$"
 const LogoText = styled.h1`
-  font-size: 4rem;
+  font-size: 6rem; /* Increased size */
   margin: 0.5rem;
   color: #00fff6;                /* neon cyan color for logo text */
-  text-shadow: 0 0 8px #00fff6, 0 0 16px #00fff6;
+  text-shadow: 0 0 12px #00fff6, 0 0 24px #00fff6; /* Stronger glow */
+  letter-spacing: 0.1em; /* Added letter spacing */
 `;
 
 // Hero welcome message text
 const WelcomeText = styled.h2`
-  font-size: 2rem;
-  font-weight: 400;
-  margin: 1rem 0;
+  font-size: 3.5rem; /* Increased size */
+  font-weight: 500; /* Slightly bolder */
+  margin: 1.5rem 0; /* Increased margin */
+  letter-spacing: 0.05em;
 `;
 
 // Tagline text
 const Tagline = styled.p`
-  font-size: 1.25rem;
+  font-size: 1.5rem; /* Increased size */
   font-style: italic;
-  color: #ccccff;               /* slight tint for tagline */
+  color: #b3b3ff;               /* Lighter tint for tagline */
   margin-bottom: 0;
+  font-weight: 300; /* Lighter weight */
 `;
 
 // Generic content section container (semi-transparent background for contrast)
 const SectionContainer = styled.section`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-  background: rgba(0, 0, 0, 0.5);  /* translucent background to make text readable */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  margin-bottom: 4rem;
+  max-width: 900px; /* Wider container */
+  margin: 2rem auto; /* Increased top/bottom margin */
+  padding: 3rem 2rem; /* Increased padding */
+  background: rgba(255, 255, 255, 0.05); /* Lighter, slightly translucent white background */
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6); /* More pronounced shadow */
+  border-radius: 12px; /* More rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  backdrop-filter: blur(10px); /* Apply blur to the background */
 `;
 
 // Manifesto section styling
 const ManifestoSection = styled(SectionContainer)`
   color: #e0e0e0;
-  line-height: 1.6;
+  line-height: 1.8; /* Increased line height for better readability */
   /* Fade-in effect when it becomes visible */
   opacity: ${props => (props.visible ? 1 : 0)};
   transform: translateY(${props => (props.visible ? '0' : '20px')});
   transition: opacity 1.5s ease, transform 1.5s ease;
+  p {
+    font-size: 1.1rem; /* Slightly larger paragraph text */
+  }
 `;
 
 // Tokenomics section styling (reusing SectionContainer)
 const TokenomicsSection = styled(SectionContainer)`
   color: #e0e0e0;
+  h2 {
+    color: #cff; /* Neon color for the title */
+    font-size: 2.5rem; /* Larger title */
+    text-shadow: 0 0 10px #cff, 0 0 20px #cff; /* Neon glow effect */
+    margin-bottom: 1.5rem; /* Spacing below title */
+  }
+  ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding-left: 0; /* Remove default padding */
+  }
+  li {
+    margin-bottom: 0.75rem; /* Spacing between list items */
+    font-size: 1.1rem; /* Slightly larger list text */
+  }
+  strong {
+    color: #fff; /* Highlight important text in list */
+  }
 `;
 
 // Community section styling (reusing SectionContainer but maybe lighter overlay)
 const CommunitySection = styled(SectionContainer)`
   text-align: center;
   background: rgba(0, 0, 0, 0.4);
+  h2 {
+    font-size: 2.5rem; /* Larger title */
+    color: #00fff6; /* Neon cyan for title */
+    text-shadow: 0 0 10px #00fff6, 0 0 20px #00fff6; /* Neon glow */
+    margin-bottom: 1rem;
+  }
+  p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+  a {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+    color: #00fff6;
+    text-decoration: none;
+    border: 2px solid #00fff6;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    &:hover {
+      background-color: #00fff6;
+      color: #121212;
+      text-shadow: none;
+    }
+  }
 `;
 
 // Footer container
 const Footer = styled.footer`
   text-align: center;
-  padding: 2rem 1rem;
-  background: rgba(0, 0, 0, 0.8);
-  color: #999;
-  font-size: 0.9rem;
+  padding: 3rem 1rem; /* Increased padding */
+  background: #111; /* Slightly lighter footer background */
+  color: #ccc; /* Lighter text color */
+  font-size: 1rem; /* Slightly larger font size */
+  line-height: 1.7; /* Increased line height */
 `;
 
 // The main React component
