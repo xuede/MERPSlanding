@@ -223,7 +223,9 @@ const MerpleLanding = () => {
           <HeaderLink href="#">White Paper</HeaderLink>
         </div>
         <div>
-          <BuyButton>BUY MERP$ NOW!</BuyButton>
+          <HeaderLink href="https://qrx.li/BUY-MERPS/" target="_blank" rel="noopener noreferrer">
+            <BuyButton>BUY MERP$ NOW!</BuyButton>
+          </HeaderLink>
         </div>
       </StickyHeader>
       {/* Hero Section */}
@@ -286,7 +288,9 @@ const MerpleLanding = () => {
       <CommunitySection>
         <h2>If you never belonged, you do here.</h2>
         <p>"Always on the outside? Well, now you're in."</p>
-        <BuyButton style={{marginBottom: '1rem', backgroundColor: '#cc6600', color: 'white', textShadow: '0 0 10px #cc6600, 0 0 20px #cc6600', border: '2px solid #cc6600'}}>BUY MERP$ NOW!</BuyButton>
+        <HeaderLink href="https://qrx.li/BUY-MERPS/" target="_blank" rel="noopener noreferrer">
+          <BuyButton style={{marginBottom: '1rem', backgroundColor: '#cc6600', color: 'white', textShadow: '0 0 10px #cc6600, 0 0 20px #cc6600', border: '2px solid #cc6600'}}>BUY MERP$ NOW!</BuyButton>
+        </HeaderLink>
       </CommunitySection>
 
       {/* Footer */}
