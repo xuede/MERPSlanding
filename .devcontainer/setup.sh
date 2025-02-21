@@ -1,7 +1,8 @@
 # bin/bash
 
-##Uncomment the following lines to install yarn and serve PRODUCTION
-yarn global add serve #&& serve -s build
+##Comment this line for DEV, this is STATIC PROD the following lines to install yarn and serve PRODUCTION
+#npm install && npm run build
+npm install -g #&& serve -s build
 
 
 ##Uncomment the following lines to install yarn and serve DEVELOPMENT
