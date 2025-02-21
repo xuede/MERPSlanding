@@ -16,8 +16,8 @@ const PageContainer = styled.div`
 
 // Sticky header styling
 const StickyHeader = styled.header`
-  position: sticky;
-  top: 0;
+  position: sticky !important;
+  top: 0 !important;
   background: rgba(0, 0, 0, 0.8); /* Dark background for the header */
   color: white;
   padding: 1rem 2rem;
