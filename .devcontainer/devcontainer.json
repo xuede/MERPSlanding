@@ -24,6 +24,6 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "sudo chown node:node /workspaces/* && npm install -save serve && /workspaces/MERPSlanding/.devcontainer/setup.sh"
-	"postCreateCommand": "sudo chown node:node /workspaces/* && yarn global add serve && /workspaces/MERPSlanding/.devcontainer/setup.sh"
+	"postCreateCommand": "sudo chown node:node /workspaces/* && /workspaces/MERPSlanding/.devcontainer/setup.sh"
 
 }
